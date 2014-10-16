@@ -1,6 +1,6 @@
 #include <stdio.h>      
 #include <stdlib.h> 
-
+#include <time.h>
 void rellenarMatriz(int X[][4]){/*ññenar la matriz de cada jugador*/
 	srand (time(NULL));
 	for (int i = 0; i < 4; ++i)
@@ -50,7 +50,8 @@ int contar(int X[][4], int numBuscar, int con){/*debe pasar por argumento el num
 }
 main()
 {
-	int A[4][4],B[4][4],C[4][4],num;
+	int A[4][4],B[4][4],C[4][4],num, n;// n es los segundos
+	time_t comienzo, final;
 	srand (time(NULL));
 	if (con==16)/* si el jugador llega a 16 en su contador gana*/
 	{
@@ -61,11 +62,15 @@ main()
 		/*Invocar funciones de imprimir para todas las matrices(plantilas de cada jugador) y las funciones de buscar figura 
 		solo para las matrices de la "computadora"*/
 		num = rand() % 50+1;/*genera numero de carta que se buscara */
+		comienzo = time( NULL ); //comienza a tomar el tiempo
 		printf("Tienes esa figura?\n");
 			scanf("%s",&c);
+		final = time( NULL );//deja de tomar el tiempo
 		/*invocar a las funciones, requiero 3 contadores*/
+		if(difftime(final, comienzo)<=n){ // solo compara si esta en el tiempo indicado, difftime hace la diferencia compara solo si el usuario no se tardo de mas.
 		if(c=="s" || c=="S"){/* preguntar al usuario si tiene la figura*/
 			/*invocar funcion de busqueda de nuemro, solo en caso de que el usaurio se percate de tener la figura*/
+			}
 		}
 	}while(con=!16 && con2=!16 && con3=!16)/*se debe repetir el ciclo hasta que no halla algun contador igual a 16*/
 }
